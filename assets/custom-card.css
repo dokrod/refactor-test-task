@@ -1,0 +1,30 @@
+.custom-card {
+  width: 100%;
+  max-width: 375px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.custom-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.custom-card__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 30px 45px;
+}
+.custom-card__title {
+  font-family: "Gothic A1", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: center;
+}

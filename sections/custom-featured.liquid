@@ -1,10 +1,30 @@
 {{ 'custom-featured.css' | asset_url | stylesheet_tag }}
+{{ 'custom-card.css' | asset_url | stylesheet_tag }}
+
+
+{% assign disco_collection = collections['disco'] %}
 
 <div class="section-{{ section.id }}-padding">
   <div class="custom-featured" id="custom-featured-{{ section.id }}" data-id="{{ section.id }}">
     <div class="custom-featured__title">
       {%- if section.settings.title != blank -%}
         {{ section.settings.title }}
+      {%- endif -%}
+    </div>
+
+    <div class="custom-featured__content">
+      {%- if disco_collection.products.size > 0 -%}
+        {%- for product in disco_collection.products -%}
+          {% render 'custom-card', 
+            image_url: product.featured_image, 
+            image_alt: product.title, 
+            title: product.title, 
+            link_url: product.url 
+            price: product.price
+          %}
+        {%- endfor -%}
+      {%- else -%}
+        <p>No products found in this collection.</p>
       {%- endif -%}
     </div>
   </div>
@@ -19,6 +39,12 @@
       "id": "title",
       "label": "Title",
       "default": "Featured Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "default": "frontpage"
     },
     {
       "type": "range",

@@ -8,6 +8,11 @@
   font-weight: 400;
   src: url('{{ "GothicA1-Regular.ttf" | asset_url }}') format("truetype");
 }
+.custom-featured__content {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+}
 .custom-featured__title {
   font-family: "Gothic A1", sans-serif;
   font-size: 26px;

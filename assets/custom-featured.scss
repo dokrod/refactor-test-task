@@ -11,6 +11,12 @@
 }
 
 .custom-featured {
+  &__content {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+  }
+
   &__title {
     font-family: 'Gothic A1', sans-serif;
     font-size: 26px;
