@@ -32,3 +32,15 @@
     text-align: center;
   }
 }
+
+@media (mxin-width: 900px) {
+  .custom-card {
+    max-width: 450px;
+  }
+}
+
+@media (min-width: 1360px) {
+  .custom-card {
+    max-width: 520px;
+  }
+}

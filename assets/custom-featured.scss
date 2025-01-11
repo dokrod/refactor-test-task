@@ -27,3 +27,29 @@
     margin-bottom: 30px;
   }
 }
+
+@media (min-width: 900px) {
+  .custom-featured {
+    &__content{
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 140px 30px;
+      column-gap: 40px;
+      row-gap: 120px;
+      justify-content: center;
+    }
+    
+    &__title {
+      font-size: 32px;
+      line-height: 32px;
+    }
+  }
+}
+
+@media (min-width: 1360px) {
+  .custom-featured {
+    &__title {
+      font-size: 42px;
+      line-height: 42px;
+    }
+  }
+}
