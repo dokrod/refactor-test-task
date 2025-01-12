@@ -1,15 +1,15 @@
 <div class="custom-card">
   <div class="custom-card__image">
     <img
-      src="{{ image_url | image_url }}"
-      alt="{{ image_alt }}"
+      src="{{ product.featured_image | image_url }}"
+      alt="{{ product.title }}"
       width="{{ image.width }}"
       height="{{ image.height }}"
     >
   </div>
 
   <div class="custom-card__content">
-    <div class="custom-card__title">{{ title }}</div>
-    {% render 'custom-buy-button', price: price %}
+    <div class="custom-card__title">{{ product.title }}</div>
+    {% render 'custom-buy-button', product: product %}
   </div>
 </div>

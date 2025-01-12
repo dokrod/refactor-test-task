@@ -18,11 +18,7 @@
       {%- if disco_collection.products.size > 0 -%}
         {%- for product in disco_collection.products -%}
           {% render 'custom-card', 
-            image_url: product.featured_image, 
-            image_alt: product.title, 
-            title: product.title, 
-            link_url: product.url 
-            price: product.price
+            product: product,
           %}
         {%- endfor -%}
       {%- else -%}
@@ -34,7 +30,7 @@
 
 {% schema %}
 {
-  "name": "Custom Section",
+  "name": "Custom Featured",
   "settings": [
     {
       "type": "text",
@@ -46,7 +42,6 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection",
-      "default": "frontpage"
     },
     {
       "type": "range",

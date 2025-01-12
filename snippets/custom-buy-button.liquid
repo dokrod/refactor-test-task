@@ -1,3 +1,41 @@
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
 <div class="custom-buy-button">
-  <button class="custom-buy-button__button">Add to cart - {{ price | money }}</button>
+  <product-form
+    class="product-form custom-product-form"
+    data-section-id="{{ section.id }}"
+  >
+    <div class="product-form__error-message-wrapper" role="alert" hidden>
+      <span class="svg-wrapper">
+        {{- 'icon-error.svg' | inline_asset_content -}}
+      </span>
+      <span class="product-form__error-message"></span>
+    </div>
+
+    {%- form 'product',
+      product,
+      id: product_form_id,
+      class: 'form',
+      novalidate: 'novalidate',
+      data-type: 'add-to-cart-form'
+    -%}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+        class="product-variant-id"
+      >
+
+      <div class="product-form__buttons">
+        <button
+          type="submit"
+          name="add"
+          class="custom-buy-button__button"
+        >
+          <span> Add to cart - {{ product.price | money }} </span>
+          {%- render 'loading-spinner' -%}
+        </button>
+      </div>
+    {%- endform -%}
+  </product-form>
 </div>
