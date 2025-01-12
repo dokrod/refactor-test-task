@@ -2,12 +2,13 @@
 {{ 'custom-card.css' | asset_url | stylesheet_tag }}
 {{ 'custom-buy-button.css' | asset_url | stylesheet_tag }}
 
+<script src="{{ 'update-section.js' | asset_url }}" defer></script>
 
-
+{% assign cart_item_ids = cart.items | map: 'id' %}
 {% assign disco_collection = collections['disco'] %}
 
 <div class="section-{{ section.id }}-padding">
-  <div class="custom-featured" id="custom-featured-{{ section.id }}" data-id="{{ section.id }}">
+  <div class="custom-featured" id="template--{{ section.id }}__custom-featured" data-id="{{ section.id }}">
     <div class="custom-featured__title">
       {%- if section.settings.title != blank -%}
         {{ section.settings.title }}
@@ -16,11 +17,19 @@
 
     <div class="custom-featured__content">
       {%- if disco_collection.products.size > 0 -%}
+        {%- assign products_in_cart = 0 -%}
         {%- for product in disco_collection.products -%}
-          {% render 'custom-card', 
-            product: product,
-          %}
+          {% unless cart_item_ids contains product.variants.first.id %}
+            {% render 'custom-card', 
+              product: product
+            %}
+          {% else %}
+            {%- assign products_in_cart = products_in_cart | plus: 1 -%}
+          {% endunless %}
         {%- endfor -%}
+        {%- if products_in_cart == disco_collection.products.size -%}
+          <p>All products are in the cart.</p>
+        {%- endif -%}
       {%- else -%}
         <p>No products found in this collection.</p>
       {%- endif -%}
